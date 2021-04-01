@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').parse()
+    require('dotenv').config()
 }
 
 const express = require('express');
@@ -13,7 +13,8 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTop
 });
 
 app.use(express.urlencoded({extended: false}))
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
 app.use(express.static('public'))
 
 app.use('/', indexRouter)
